@@ -12,6 +12,10 @@ local opts = {
     }),
     null_ls.builtins.diagnostics.ruff,
   },
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*",
+    command = "%s/\\s\\+$//e",
+  }),
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
       vim.api.nvim_clear_autocmds({
